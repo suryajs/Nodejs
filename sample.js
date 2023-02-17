@@ -138,9 +138,6 @@ fs.readFile(`${__dirname}/pet.txt`, (err, data) => {
     })
 })
 
-
-
-
 const isRideAccepted = false
 const p1=()=>{
     return new Promise((resolve,reject)=>{
@@ -170,6 +167,23 @@ const readFile = (fileName) => {
         })
     })
 }
+
+const write=(fileName,breed)=>{
+    return new Promise((resolve,reject)=>{
+        fs.writeFile(fileName,breed,(err)=>{
+            if(err){
+                reject("unable to write data")
+            }resolve("Data saved succesfully")
+        })
+    })
+}
+
+write(`${__dirname}/pet.txt`,'boxer')
+.then((message)=>{
+    console.log(message)
+}).catch((message)=>{
+    console.log(message)
+})
 
 readFile(`${__dirname}/pet.txt`)
 .then((data)=>{
