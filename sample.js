@@ -63,7 +63,6 @@ let returnSomething =(num1,num2)=>{
 }
 returnSomething(10,20)
 
-*/
 
 let sum=(num1,num2)=>{
     console.log(Number(num1)+Number(num2))
@@ -100,3 +99,41 @@ function init(){
     }
 }
 init()
+
+
+
+const fs=require('fs')
+fs.readFile(`${__dirname}/pet.txt`,(err,data) => {
+    if(err){
+        console.log("Error Happened")
+        return
+    }
+    console.log(data.toString())
+})
+fs.writeFile(`${__dirname}/pet.txt`,'Naai eh vena',(err) => {
+    if(err){
+        console.log("Error Happened")
+        return
+    }
+    console.log("Saved data successfully")
+})
+
+
+var http = require('http');
+
+http.createServer(function (req, res) {
+  res.writeHead(200, {'Content-Type': 'text/html'});
+  res.end('Hello World!');
+}).listen(8080);
+
+*/
+
+const fs=require("fs")
+const superagent=require("superagent")
+fs.readFile(`${__dirname}/pet.txt`, (err, data) => {
+    superagent
+    .get(`https://dog.ceo/api/breed/${data}/images/random`)
+    .end((err, res) => {
+        console.log(res.body)
+    })
+})
