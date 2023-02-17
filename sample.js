@@ -126,8 +126,8 @@ http.createServer(function (req, res) {
   res.end('Hello World!');
 }).listen(8080);
 
-*/
 
+// Task
 const fs=require("fs")
 const superagent=require("superagent")
 fs.readFile(`${__dirname}/pet.txt`, (err, data) => {
@@ -136,4 +136,44 @@ fs.readFile(`${__dirname}/pet.txt`, (err, data) => {
     .end((err, res) => {
         console.log(res.body)
     })
+})
+
+
+
+
+const isRideAccepted = false
+const p1=()=>{
+    return new Promise((resolve,reject)=>{
+        if(isRideAccepted){
+            resolve("enjoy your ride")
+        }else{
+            reject('Please look for other cab driver')
+        }
+    })
+}
+
+p1().then((message)=>{
+    console.log(message)
+}).catch((message)=>{
+    console.log(message)
+})
+
+*/
+const fs=require('fs')
+const readFile = (fileName) => {
+    return new Promise((resolve,reject)=>{
+        fs.readFile(fileName,(err,data)=>{
+            if(err){
+                reject("Unable to read file! Something is happened")
+            }
+            resolve(data)
+        })
+    })
+}
+
+readFile(`${__dirname}/pet.txt`)
+.then((data)=>{
+    console.log(data.toString())
+}).catch((message)=>{
+    console.log(message)
 })
