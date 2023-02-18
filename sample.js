@@ -155,7 +155,7 @@ p1().then((message)=>{
     console.log(message)
 })
 
-*/
+
 const fs=require('fs')
 const readFile = (fileName) => {
     return new Promise((resolve,reject)=>{
@@ -191,3 +191,25 @@ readFile(`${__dirname}/pet.txt`)
 }).catch((message)=>{
     console.log(message)
 })
+
+const http=require('http')
+const ip='localhost';
+const port=3000
+
+const requestListener=(req,res)=>{
+    res.setHeader('Content-Type',"application/json");
+    res.writeHead(200)
+    res.end(`
+    {
+        "message: "success",
+        "url":"http://random/images/myapplication"
+    }`)
+}
+
+const server = http.createServer(requestListener)
+server.listen(port,ip , ()=>{
+    console.log(`Server running on port ${port}`)
+})
+
+*/
+
